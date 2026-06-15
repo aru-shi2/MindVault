@@ -1,12 +1,18 @@
-import express, { Router, Request, Response, NextFunction } from 'express';
+import express, { Application } from 'express';
 import mongoose from 'mongoose'
 require('dotenv').config();
 import authRouter from './routes/auth';
+import contentRouter from './routes/content';
+import shareRouter from './routes/share';
 
-const app = express();
+const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
-app.post("/api/v1/auth",authRouter)
+app.use(express.json())
+
+app.use("/api/v1/auth",authRouter)
+app.use("/api/v1/content",contentRouter)
+app.use("/api/v1/share",shareRouter)
 
 async function main(): Promise<void>{
     await mongoose.connect(process.env.DATABASE_URL as string)
