@@ -1,11 +1,12 @@
-import { Response, Request, NextFunction } from "express";
+import { Response, Request, NextFunction, RequestHandler } from "express";
 import * as jwt from "jsonwebtoken"
 
-interface AuthRequest extends Request{
-    userId?: string,
+export interface AuthRequest extends Request{
+    userId: string;
 }
 
-export const userMiddleware = (req: AuthRequest, res: Response, next: NextFunction)=>{
+export const userMiddleware = (req: Request, res: Response, next: NextFunction)=> {
+    try{
     const t=req.headers.authorization;
 
     if(!t){
@@ -30,8 +31,14 @@ export const userMiddleware = (req: AuthRequest, res: Response, next: NextFuncti
         next();
     }
     else{
-        res.status(401).json({
+        return res.status(401).json({
             msg:"You are not signed in!"
         })
     }
+}
+catch(e){
+    return res.status(500).json({
+        msg:"something went wrong"
+    })
+}
 }

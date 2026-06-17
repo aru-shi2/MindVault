@@ -52,8 +52,7 @@ const login=async(req:Request,res:Response)=>{
 
     const Userschema=z.object({
         username:z.email(),
-        password:z.string().min(6,"password is too short").max(15,"password is too long")
-        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).*$/,"Password must contain atleast one uppercase, one lowercase, one number and one special character")
+        password:z.string()
     })
 
     const check=Userschema.safeParse(req.body);

@@ -4,10 +4,8 @@ import { userMiddleware } from "../middleware/middleware";
 
 const contentRouter=Router();
 
-contentRouter.use(userMiddleware)
-
-contentRouter.post("/add",postcontent)
-contentRouter.get("/",getcontent)
-contentRouter.delete("/delete",delcontent)
+contentRouter.post("/add",userMiddleware,postcontent)
+contentRouter.get("/",userMiddleware,getcontent)
+contentRouter.delete("/delete",userMiddleware,  delcontent)
 
 export default contentRouter
