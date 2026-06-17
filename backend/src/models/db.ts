@@ -1,30 +1,37 @@
 import mongoose, {Schema, Document} from 'mongoose'
 
 interface Iuser extends Document {
-    username: String,
-    password: String
+    username: string,
+    password: string
 }
 
 interface Icontent extends Document {
-    link: String,
-    type: String,
-    title: String,
-    tags: mongoose.Types.ObjectId,
+    link: string,
+    type: string,
+    title: string,
+    tags?: mongoose.Types.ObjectId,
     userId: mongoose.Types.ObjectId
 }
 
 interface Itags extends Document {
-    title: String
+    title: string
 }
 
 interface Ilinkk extends Document {
-    hash: String,
+    hash: string,
     userId: mongoose.Types.ObjectId
 }
 
 const userSchema= new Schema <Iuser>({
-    username: String,
-    password: String
+    username: {
+        type:String,
+        required:true,
+        unique:true
+    },
+    password: {
+        type: String,
+        required: true
+    }
 })
 
 const contentSchema=new Schema <Icontent>({
