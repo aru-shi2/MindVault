@@ -12,7 +12,7 @@ app.use(express.json())
 
 app.use("/api/v1/auth",authRouter)
 app.use("/api/v1/content",contentRouter)
-app.use("/api/v1/share",shareRouter)
+app.use("/api/v1/mind",shareRouter)
 
 async function main(): Promise<void>{
     await mongoose.connect(process.env.DATABASE_URL as string)
