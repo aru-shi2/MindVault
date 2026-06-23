@@ -1,19 +1,19 @@
-import type { ReactElement } from "react"
 
 interface ButtonProps {
-    variant:"primary"|"secondary",
+    variant:"primary"|"secondary"|"tags",
     size: "sm"|"md"|"lg",
     text: string,
-    startIcon?: ReactElement,
-    endIcon?: ReactElement,
-    onClick:()=>void
+    startIcon?: React.ReactNode,
+    endIcon?: React.ReactNode,
+    onClick?:()=>void
 }
 
 const baseStyles="rounded-xl font-medium flex items-center justify-center"
 
 const ButtonVariants={
     "primary":"bg-blue-500 text-white",
-    "secondary":"bg-blue-300 text-blue-800"
+    "secondary":"bg-blue-300 text-blue-800",
+    "tags":"bg-gray-200 text-black"
 }
 
 const sizeStyles={
@@ -23,7 +23,7 @@ const sizeStyles={
 }
 
 export const Button=(props:ButtonProps)=>{
-    return <button className={`${baseStyles} ${ButtonVariants[props.variant]} ${sizeStyles[props.size]} flex items-center gap-2`}>
+    return <button className={`${baseStyles} ${ButtonVariants[props.variant]} ${sizeStyles[props.size]} flex items-center justify-center gap-2`}>
             {props.startIcon}
             {props.text}
         {props.endIcon}

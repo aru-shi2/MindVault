@@ -10,7 +10,9 @@ interface Icontent extends Document {
     type: string,
     title: string,
     tags?: mongoose.Types.ObjectId[],
-    userId?: mongoose.Types.ObjectId
+    userId?: mongoose.Types.ObjectId,
+    createdAt?: Date,
+    updatedAt?: Date
 }
 
 interface Itags extends Document {
@@ -34,7 +36,8 @@ const userSchema= new Schema <Iuser>({
     }
 })
 
-const contentSchema=new Schema <Icontent>({
+const contentSchema=new Schema <Icontent>(
+{
     link: String,
     type: String,
     title: String,
@@ -45,7 +48,10 @@ const contentSchema=new Schema <Icontent>({
     userId: {
         type: Schema.Types.ObjectId,
         ref:"User"
-    }
+    },
+},
+{
+    timestamps: true,
 })
 
 const tagsSchema=new Schema <Itags>({
