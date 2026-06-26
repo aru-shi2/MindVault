@@ -7,7 +7,7 @@ const postcontent=async(req: Request,res: Response)=>{
     const userId=req.userId
 
     const Contschema=z.object({
-            link: z.url(),
+            link: z.string(),
             type: z.string(),
             title: z.string(),
             tags: z.array(z.string()).optional(),
