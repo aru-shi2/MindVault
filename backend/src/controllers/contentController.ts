@@ -10,8 +10,7 @@ const postcontent=async(req: Request,res: Response)=>{
             link: z.string(),
             type: z.string(),
             title: z.string(),
-            tags: z.array(z.string()).optional(),
-            userId: z.string()
+            tags: z.array(z.string()).optional()
         })
     
         const check=Contschema.safeParse(req.body);

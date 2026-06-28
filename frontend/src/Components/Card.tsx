@@ -13,7 +13,6 @@ interface CardProps {
 }
 
 
-
 export const Card = ({ title, link, type, createdAt, darkMode }: CardProps) => {
     
     const iconMap = {
@@ -24,7 +23,7 @@ export const Card = ({ title, link, type, createdAt, darkMode }: CardProps) => {
     };
 
     return (
-        <div className={`w-full rounded-2xl p-6 border transition-all duration-300 shadow-xs flex flex-col justify-between space-y-5 group ${darkMode ? 'bg-[#0d0d0d] border-[#181818] hover:border-[#2c2c2c]' : 'bg-white border-gray-300 hover:border-[#918f8f]'}`}>
+        <div className={`w-full rounded-2xl p-5 border transition-all duration-300 shadow-xs flex flex-col justify-between space-y-5 group ${darkMode ? 'bg-[#0d0d0d] border-[#181818] hover:border-[#2c2c2c]' : 'bg-white border-gray-300 hover:border-[#918f8f]'}`}>
             
             <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -53,12 +52,12 @@ export const Card = ({ title, link, type, createdAt, darkMode }: CardProps) => {
             </div>
 
             {/* Embedded Asset Slot Box */}
-            <div className={`overflow-hidden rounded-xl border ${darkMode ? 'border-[#141414] bg-[#070707]' : 'border-slate-100 bg-slate-50'}`}>
+            <div className={`max-h-150 max-w-100 rounded-xl border ${darkMode ? 'border-[#141414] bg-[#070707]' : 'border-slate-100 bg-slate-50'}`}>
                 {type === "youtube" && (
                     <div className="relative aspect-video w-full">
                         <iframe 
                             className="w-full h-full" 
-                            src={link.replace("watch?v=", "embed/").replace("watch", "embed")} 
+                            src={link} 
                             title="YouTube video player" 
                             frameBorder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -69,7 +68,7 @@ export const Card = ({ title, link, type, createdAt, darkMode }: CardProps) => {
                 )}
 
                 {type === "twitter" && (
-                    <div className="p-1 max-h-48 overflow-y-auto">
+                    <div className="p-1 max-h-55 overflow-y-auto">
                         <blockquote className="twitter-tweet">
                             <a href={link}></a>
                         </blockquote>

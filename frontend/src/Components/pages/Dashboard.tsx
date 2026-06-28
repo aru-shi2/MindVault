@@ -1,13 +1,39 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '../Button'
 import { PlusIcon, ShareIcon } from 'lucide-react'
 import { Card } from '../Card'
 import { CreateContentModal } from '../CreateContent'
 import { SideBar } from '../SideBar'
 
+interface  ArrType {
+  link: string,
+  type: "notes" | "youtube" | "blog" | "twitter",
+  title: string
+}
+
 export function Dashboard() {
   const [modalOpen, setmodalOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [contArr, setcontArr] = useState<ArrType[]> ([])
+
+    const t: string|null=localStorage.getItem("token");
+
+  async function fetchCont() {
+    const res=await fetch("http://localhost:3000/api/v1/content/",{
+      headers:{
+        'Authorization':`Bearer ${t}`,
+        'Content-Type':'application/json'
+      }
+    })
+    const data=await res.json()
+    console.log(data)
+    setcontArr(data.content)
+  }
+
+  useEffect(() => {
+    fetchCont();
+  }, [modalOpen])
+  
 
   return (
     <div className={`min-h-screen font-sans antialiased selection:bg-indigo-500/10 transition-colors duration-300 ${darkMode ? 'bg-[#050505] text-slate-200' : 'bg-[#f8fafc] text-slate-800'}`}>
@@ -46,10 +72,14 @@ export function Dashboard() {
 
         <CreateContentModal open={modalOpen} onClose={() => setmodalOpen(false)} darkMode={darkMode} />
         
-        {/* Dribbble Style Symmetrical Cards Grid Layout */}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-          <Card darkMode={darkMode} createdAt={new Date().toLocaleString()} title="Distributed System Consensus algorithms, Raft Explained" type='youtube' link='https://www.youtube.com/watch?v=KEs5UyBJ39g&themeRefresh=1'/>
-          <Card darkMode={darkMode} createdAt={new Date().toLocaleString()} title="PostgreSQL indexing strategies under heavy read-write loads" type='youtube' link='https://www.youtube.com/watch?v=KEs5UyBJ39g&themeRefresh=1'/>
+          {contArr?.map((cont)=>(
+            <Card darkMode={darkMode} createdAt={new Date().toLocaleString()} title={cont.title} type={cont.type} link={
+              cont.type==="youtube"?`https://www.youtube.com/embed/${cont.link}`:
+              `https://x.com/i/status/${cont.link}`
+            }/>
+          ))}
         </div>
 
       </div>

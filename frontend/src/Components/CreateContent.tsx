@@ -2,13 +2,17 @@ import { X } from "lucide-react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 import { useState } from "react";
-import { string } from "zod";
+import toast, {Toaster} from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export function CreateContentModal({ open, onClose, darkMode }) {
 
   const [Type, setType] = useState<string>("")
   const [Url, setUrl] = useState<string>("")
   const [Title, setTitle] = useState<string>("")
+
+  const navigate=useNavigate();
 
   function getYtId(Url: string){
     const u=new URL(Url);
@@ -21,12 +25,23 @@ export function CreateContentModal({ open, onClose, darkMode }) {
     const statusInd=parts.indexOf("status");
     return parts[statusInd+1];
   }
+useEffect(() => {
+  if(open){
+    setTitle("")
+    setUrl("")
+    setType("")
+  }
+}, [open])
+
+
+  const t: string|null=localStorage.getItem("token");
 
   const handleClick=async() => {
     try{
     const res=await fetch("http://localhost:3000/api/v1/content/add",{
       method:'POST',
       headers:{
+        'Authorization':`Bearer ${t}`,
         'Content-Type':'application/json'
       },
       body:JSON.stringify({
@@ -37,9 +52,16 @@ export function CreateContentModal({ open, onClose, darkMode }) {
       }),
     });
     const data=await res.json();
-    console.log(data.msg)
+    if(!res.ok){
+    toast.error(data.msg)
+  }else{
+    toast.success(data.msg);
+    setTimeout(() => {
+      onClose()
+    }, 1000);
+  }
   }catch(e){
-    console.log(e)
+    toast.error("Something went wrong!")
   }
   }
 
@@ -49,6 +71,7 @@ export function CreateContentModal({ open, onClose, darkMode }) {
       {open && (
         <div className="w-screen h-screen bg-[#000000]/70 fixed top-0 left-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
           <div className={`w-full max-w-sm border rounded-2xl shadow-xl overflow-hidden transform transition-all ${darkMode ? 'bg-[#0c0c0c] border-[#1c1c1c]' : 'bg-white border-slate-200'}`}>
+            <Toaster/>
             
             {/* Modal Navigation Control Header */}
             <div className={`p-4 border-b flex items-center justify-between ${darkMode ? 'bg-[#080808]/50 border-[#1c1c1c]' : 'bg-slate-50/50 border-slate-100'}`}>
