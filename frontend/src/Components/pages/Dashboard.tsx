@@ -14,12 +14,15 @@ interface  ArrType {
 export function Dashboard() {
   const [modalOpen, setmodalOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [Types, setTypes] = useState<string>("all")
   const [contArr, setcontArr] = useState<ArrType[]> ([])
+  const [Share, setShare] = useState(false)
+  
 
     const t: string|null=localStorage.getItem("token");
 
   async function fetchCont() {
-    const res=await fetch("http://localhost:3000/api/v1/content/",{
+    const res=await fetch(`http://localhost:3000/api/v1/content?type=${Types}`,{
       headers:{
         'Authorization':`Bearer ${t}`,
         'Content-Type':'application/json'
@@ -32,12 +35,18 @@ export function Dashboard() {
 
   useEffect(() => {
     fetchCont();
-  }, [modalOpen])
+  }, [modalOpen || Types])
+
+
+  async function shareBrain() {
+    setShare(true)
+    const res=await fetch(`http://localhost:3000/api/v1/mind/`)
+  }
   
 
   return (
     <div className={`min-h-screen font-sans antialiased selection:bg-indigo-500/10 transition-colors duration-300 ${darkMode ? 'bg-[#050505] text-slate-200' : 'bg-[#f8fafc] text-slate-800'}`}>
-      <SideBar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <SideBar setTypes={setTypes} darkMode={darkMode} setDarkMode={setDarkMode} />
       
       {/* Main Interface Core Wrapper */}
       <div className='p-6 md:p-12 ml-0 md:ml-76 transition-all duration-300'>
@@ -51,7 +60,7 @@ export function Dashboard() {
 
           <div className='flex items-center gap-3 self-end sm:self-auto'>
             <Button 
-              onClick={() => {}} 
+              onClick={() => {shareBrain}} 
               variant="secondary" 
               size='md' 
               text='Share Content' 
@@ -75,10 +84,12 @@ export function Dashboard() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {contArr?.map((cont)=>(
+            <div key={cont._id}>
             <Card darkMode={darkMode} createdAt={new Date().toLocaleString()} title={cont.title} type={cont.type} link={
               cont.type==="youtube"?`https://www.youtube.com/embed/${cont.link}`:
               `https://x.com/i/status/${cont.link}`
             }/>
+            </div>
           ))}
         </div>
 

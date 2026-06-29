@@ -40,8 +40,19 @@ const postcontent=async(req: Request,res: Response)=>{
 }
 
 const getcontent=async(req: Request,res: Response)=>{
+    const typ=req.query.type;
     const userId=req.userId
-    const content=await contentModel.find({userId:userId}).populate("userId","username")
+    let content
+    
+    if(typ==="all"){
+         content=await contentModel.find({userId:userId}).populate("userId","username")
+    }else{
+         content=await contentModel.find({
+            userId:userId,
+            type:typ
+        }).populate("userId","username")
+    }
+
     if(content){
         return res.status(200).json({
             content

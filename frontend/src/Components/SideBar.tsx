@@ -2,8 +2,11 @@ import { SidebarItem } from "./SidebarItems";
 import { LayoutGridIcon, Sun, Moon } from "lucide-react"
 import { YoutubeIcon } from "./icons/Youtube";
 import { TwitterIcon } from "./icons/Twitter";
- 
-export function SideBar({ darkMode, setDarkMode }: { darkMode: boolean, setDarkMode: (v: boolean) => void }){
+import { useState } from "react";
+
+export function SideBar( { darkMode, setDarkMode, setTypes }: { darkMode: boolean, setTypes: React.Dispatch<React.SetStateAction<string>>, setDarkMode: (v: boolean) => void }){
+
+   
     return (
         <div className={`h-16 md:h-screen w-full md:w-76 border-b md:border-b-0 md:border-r fixed left-0 top-0 z-40 flex flex-row md:flex-col items-center md:items-stretch justify-between md:justify-start px-6 py-0 md:py-6 transition-all duration-300 ${darkMode ? 'bg-[#050505] border-[#2c2c2c]' : 'bg-white border-[#caccce]'}`}>
           
@@ -33,15 +36,15 @@ export function SideBar({ darkMode, setDarkMode }: { darkMode: boolean, setDarkM
              <span className={`px-2 text-[10px] font-bold uppercase tracking-widest block mb-2 mt-8 ${darkMode ? 'text-[#666666]' : 'text-slate-400'}`}>Workspaces</span>
              
              {/* Selected Tab Active Element state */}
-             <div className={`w-full rounded-xl border transition-all ${darkMode ? 'bg-[#1a1a1a] border-[#262626]/40' : ' bg-gray-200 border-slate-300'}`}>
+             <div onClick={()=>setTypes("all")} className={`w-full rounded-xl border transition-all ${darkMode ? 'bg-[#1a1a1a] border-[#262626]/40' : ' bg-gray-200 border-slate-300'}`}>
                 <SidebarItem text="All Memories" icon={<LayoutGridIcon size="1em" className={darkMode ? "text-white" : "text-slate-900"}/>} darkMode={darkMode}/>
              </div>
              
-             <div className={`w-full rounded-xl border border-transparent transition-all ${darkMode ? 'hover:bg-[#121212]' : 'hover:bg-gray-200 hover:border-gray-300'}`}>
+             <div onClick={()=>setTypes("twitter")} className={`w-full rounded-xl border border-transparent transition-all ${darkMode ? 'hover:bg-[#121212]' : 'hover:bg-gray-200 hover:border-gray-300'}`}>
                 <SidebarItem text="Twitter Feed" icon={<TwitterIcon />} darkMode={darkMode}/>
              </div>
 
-             <div className={`w-full rounded-xl border border-transparent transition-all ${darkMode ? 'hover:bg-[#121212]' : 'hover:border-gray-300 hover:bg-gray-200'}`}>
+             <div onClick={()=>setTypes("youtube")} className={`w-full rounded-xl border border-transparent transition-all ${darkMode ? 'hover:bg-[#121212]' : 'hover:border-gray-300 hover:bg-gray-200'}`}>
                 <SidebarItem text="YouTube Sync" icon={<YoutubeIcon />} darkMode={darkMode}/>
              </div>
           </div>
