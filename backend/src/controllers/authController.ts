@@ -32,12 +32,14 @@ const signup=async(req: Request,res: Response)=>{
     const hashedpass=await bcrypt.hash(password,6)
 
     try{
-        await userModel.create({
+        const newuser=await userModel.create({
             username,
             password:hashedpass
         })
+        const token=jwt.sign({id:newuser._id}, process.env.JWT_SECRET as string)
         return res.status(200).json({
-            msg:"Signed up successfully!"
+            msg:"Signed up successfully!",
+            token
         })
     }
     catch(e){

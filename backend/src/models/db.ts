@@ -10,9 +10,8 @@ interface Icontent extends Document {
     type: string,
     title: string,
     tags?: mongoose.Types.ObjectId[],
-    userId?: mongoose.Types.ObjectId,
-    createdAt?: Date,
-    updatedAt?: Date
+    userId: mongoose.Types.ObjectId,
+    createdAt: Date,
 }
 
 interface Itags extends Document {

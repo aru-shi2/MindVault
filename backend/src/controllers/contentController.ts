@@ -40,17 +40,18 @@ const postcontent=async(req: Request,res: Response)=>{
 }
 
 const getcontent=async(req: Request,res: Response)=>{
-    const typ=req.query.type;
+    const {type}: string=req.query
     const userId=req.userId
+    console.log(userId)
     let content
     
-    if(typ==="all"){
+    if(type==="all"){
          content=await contentModel.find({userId:userId}).populate("userId","username")
     }else{
          content=await contentModel.find({
-            userId:userId,
-            type:typ
-        }).populate("userId","username")
+            userId,
+            type
+        })
     }
 
     if(content){
@@ -68,7 +69,7 @@ const getcontent=async(req: Request,res: Response)=>{
 const delcontent=async(req: Request,res: Response)=>{
     try{
     const userId=req.userId
-    const contId=req.body.contId
+    const contId=req.params.contId
     await contentModel.deleteOne({_id:contId, userId:userId})
     return res.status(200).json({
         msg:"deleted successfully!"

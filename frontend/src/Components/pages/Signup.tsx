@@ -25,6 +25,7 @@ const handleSignup=async() => {
   })
 
   const data=await res.json();
+  localStorage.setItem("token",data.token)
   
   if(!res.ok){
     toast.error(data.msg)

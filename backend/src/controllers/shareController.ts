@@ -27,6 +27,7 @@ const shareBrain=async(req: Request,res: Response)=>{
         })
 
         res.status(200).json({
+            msg:"sharing",
             hash
         })
     }
@@ -35,7 +36,8 @@ const shareBrain=async(req: Request,res: Response)=>{
             userId:userId
         })
         res.status(200).json({
-            msg:"Stopped sharing"
+            msg:"Stopped sharing",
+            
         })
     }
     }

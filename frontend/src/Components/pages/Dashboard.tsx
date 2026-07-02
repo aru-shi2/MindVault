@@ -4,6 +4,7 @@ import { PlusIcon, ShareIcon } from 'lucide-react'
 import { Card } from '../Card'
 import { CreateContentModal } from '../CreateContent'
 import { SideBar } from '../SideBar'
+import toast, {Toaster} from 'react-hot-toast'
 
 interface  ArrType {
   link: string,
@@ -11,10 +12,11 @@ interface  ArrType {
   title: string
 }
 
+
 export function Dashboard() {
   const [modalOpen, setmodalOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const [Types, setTypes] = useState<string>("all")
+  const [darkMode, setDarkMode] = useState(true);
+  const [Types, setTypes] = useState<string|null>("all" || null)
   const [contArr, setcontArr] = useState<ArrType[]> ([])
   const [Share, setShare] = useState(false)
   
@@ -39,13 +41,41 @@ export function Dashboard() {
 
 
   async function shareBrain() {
-    setShare(true)
-    const res=await fetch(`http://localhost:3000/api/v1/mind/`)
+    setShare((prev)=>!prev);
+    const res=await fetch(`http://localhost:3000/api/v1/mind/`,{
+      method:'POST',
+      headers:{
+        'Authorization':`Bearer ${t}`,
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        share:Share
+      })
+    })
+    const data=await res.json();
+    console.log(data.hash)
+    
+    if(!Share){
+      toast.success("stopped sharing")
+    }
+    else{
+    try{
+    const shareUrl=`https://localhost:5173/${data.hash}`
+
+    await navigator.clipboard.writeText(shareUrl);
+
+    toast.success("Link Copied!")
+    }catch(e){
+      toast.error("Error")
+    }
+  }
   }
   
 
   return (
     <div className={`min-h-screen font-sans antialiased selection:bg-indigo-500/10 transition-colors duration-300 ${darkMode ? 'bg-[#050505] text-slate-200' : 'bg-[#f8fafc] text-slate-800'}`}>
+
+      <Toaster/>
       <SideBar setTypes={setTypes} darkMode={darkMode} setDarkMode={setDarkMode} />
       
       {/* Main Interface Core Wrapper */}
@@ -60,7 +90,7 @@ export function Dashboard() {
 
           <div className='flex items-center gap-3 self-end sm:self-auto'>
             <Button 
-              onClick={() => {shareBrain}} 
+              onClick={shareBrain} 
               variant="secondary" 
               size='md' 
               text='Share Content' 
@@ -85,7 +115,7 @@ export function Dashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {contArr?.map((cont)=>(
             <div key={cont._id}>
-            <Card darkMode={darkMode} createdAt={new Date().toLocaleString()} title={cont.title} type={cont.type} link={
+            <Card darkMode={darkMode} id={cont.link} createdAt={cont.createdAt} title={cont.title} type={cont.type} link={
               cont.type==="youtube"?`https://www.youtube.com/embed/${cont.link}`:
               `https://x.com/i/status/${cont.link}`
             }/>

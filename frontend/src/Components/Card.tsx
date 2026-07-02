@@ -3,8 +3,10 @@ import { Button } from "./Button"
 import { YoutubeIcon } from "./icons/Youtube"
 import { TwitterIcon } from "./icons/Twitter"
 import { formatDistanceToNow } from "date-fns"
+import { useEffect } from "react"
 
 interface CardProps {
+    id: string,
     title: string
     link: string
     type: "notes" | "youtube" | "blog" | "twitter"
@@ -12,9 +14,7 @@ interface CardProps {
     darkMode?: boolean
 }
 
-export const Card = ({ title, link, type, createdAt, darkMode }: CardProps) => {
-
-  
+export const Card = ({id, title, link, type, createdAt, darkMode }: CardProps) => {  
     
     const iconMap = {
         youtube: <YoutubeIcon />,
@@ -23,29 +23,30 @@ export const Card = ({ title, link, type, createdAt, darkMode }: CardProps) => {
         notes: <FileTextIcon size="1em" className="text-indigo-500" />
     };
 
-    // Helper to fix blurry or broken watch URLs by transforming them into valid embed layouts
-    const getEmbedUrl = (url: string) => {
-        try {
-            if (url.includes("youtube.com/watch")) {
-                const videoId = new URL(url).searchParams.get("v");
-                return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
-            }
-            if (url.includes("youtu.be/")) {
-                const videoId = url.split("youtu.be/")[1]?.split(/[?#]/)[0];
-                return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
-            }
-            return url;
-        } catch (e) {
-            return url;
-        }
-    };
+   
+useEffect(() => {
+  window.twttr?.widgets.load();
+}, [link]); 
+
+
+const openLink=() => {
+  if(type==='youtube'){
+    window.open(`https://www.youtube.com/watch?v=${id}`)
+  }
+  else if(type==='twitter'){
+    window.open(link)
+  }
+}
+
+
+
 
     const hasMedia = type === "youtube" || type === "twitter";
 
     return (
-        <div className={`w-full shadow-gray-300/80 rounded-2xl p-3.5 border transition-all duration-300 shadow-xs flex flex-col justify-between group ${darkMode ? 'bg-[#0d0d0d] border-[#181818] hover:border-[#2c2c2c]' : 'bg-white border-gray-300 hover:border-[#999999]'}`}>
+        <div className={`w-full shadow-gray-300/30 rounded-2xl p-3.5 border transition-all duration-300 shadow-xs flex flex-col justify-between group ${darkMode ? 'bg-[#0d0d0d] border-[#181818] hover:border-[#2c2c2c]' : 'shadow-gray-400 bg-white border-gray-300 hover:border-[#999999]'}`}>
             
-            <div className="space-y-2">
+            <div className="space-y-4">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <div className={`p-1.5 border rounded-xl ${darkMode ? 'bg-[#141414] border-[#1f1f1f]' : 'bg-slate-50 border-slate-100'}`}>
@@ -57,23 +58,23 @@ export const Card = ({ title, link, type, createdAt, darkMode }: CardProps) => {
                     </div>
                     
                     <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200">
-                        <a href={link} target="_blank" rel="noreferrer" className={`p-1 rounded-lg transition-all ${darkMode ? 'text-[#525252] hover:text-[#ffffff] hover:bg-[#141414]' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50'}`}>
+                        <button onClick={openLink} className={`p-1 rounded-lg transition-all ${darkMode ? 'text-[#525252] hover:text-[#ffffff] hover:bg-[#141414]' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50'}`}>
                             <ExternalLinkIcon size="0.85em" />
-                        </a>
-                        <button className={`p-1 rounded-lg transition-all ${darkMode ? 'text-[#525252] hover:text-[#f87171] hover:bg-[#141414]' : 'text-slate-400 hover:text-red-500 hover:bg-slate-50'}`}>
+                        </button>
+                        <button onClick={delContent} className={`p-1 rounded-lg transition-all ${darkMode ? 'text-[#525252] hover:text-[#f87171] hover:bg-[#141414]' : 'text-slate-400 hover:text-red-500 hover:bg-slate-50'}`}>
                             <Trash2Icon size="0.85em" />
                         </button>
                     </div>
                 </div>
 
-                <h2 className={`text-xs font-semibold leading-snug tracking-tight transition-colors ${darkMode ? 'text-[#f3f4f6] group-hover:text-[#ffffff]' : 'text-slate-800 group-hover:text-slate-950'}`}>
+                <h2 className={`text-md font-semibold leading-snug tracking-tight transition-colors ${darkMode ? 'text-[#f3f4f6] group-hover:text-[#ffffff]' : 'text-slate-800 group-hover:text-slate-950'}`}>
                     {title}
                 </h2>
             </div>
 
             {/* Embedded Asset Slot Box - Only rendered when media exists to avoid unwanted vertical spacing */}
             {hasMedia && (
-                <div className={`mt-2 rounded-xl overflow-hidden border ${darkMode ? 'border-[#141414] bg-[#070707]' : 'border-slate-100 bg-slate-50'}`}>
+                <div className={`mt-4 rounded-xl overflow-hidden border ${darkMode ? 'border-[#141414] bg-[#070707]' : 'border-slate-100 bg-slate-50'}`}>
                     {type === "youtube" && (
                         <div className="relative aspect-video w-full flex justify-center">
                           <iframe height="217" src={link} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -81,7 +82,7 @@ export const Card = ({ title, link, type, createdAt, darkMode }: CardProps) => {
                     )}
 
                     {type === "twitter" && (
-                        <div className="max-h-60 w-full overflow-y-auto scrollbar-none">
+                        <div className="max-h-55 w-full overflow-y-auto scrollbar-none">
                             <blockquote className="twitter-tweet">
                                 <a href={link}></a>
                             </blockquote>
@@ -95,11 +96,11 @@ export const Card = ({ title, link, type, createdAt, darkMode }: CardProps) => {
                     <Button variant="tags" size="sm" text={type} startIcon="#" darkMode={darkMode}/>
                 </div>
 
-                {/* <span className={`text-[9px] font-mono font-medium self-end sm:self-auto ${darkMode ? 'text-[#525252]' : 'text-slate-400'}`}>
+                <span className={`text-[9px] font-mono font-medium self-end sm:self-auto ${darkMode ? 'text-[#525252]' : 'text-slate-400'}`}>
                     {createdAt && formatDistanceToNow(new Date(createdAt), {
                         addSuffix: true,
                     })}
-                </span> */}
+                </span>
             </div>
         </div>
     )
