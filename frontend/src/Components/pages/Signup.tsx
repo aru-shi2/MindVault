@@ -121,7 +121,7 @@ const handleSignup=async() => {
           {/* Bottom Card Redirect Panel Footer */}
           <div className="p-4 border-t border-[#161616] bg-[#080808]/30 flex items-center justify-center gap-1 text-xs">
             <span className="text-[#525252]">Already possess credentials?</span>
-            <a href="/signin" className="text-white font-semibold hover:underline tracking-wide transition-all">Sign In ↗</a>
+            <button onClick={() => navigate('/signin')} className="text-white font-semibold hover:underline tracking-wide transition-all">Sign In ↗</button>
           </div>
 
         </div>
