@@ -6,7 +6,6 @@ import { CreateContentModal } from '../CreateContent'
 import { SideBar } from '../SideBar'
 import toast, {Toaster} from 'react-hot-toast'
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
 
 interface  ArrType {
   _id: string
@@ -67,7 +66,7 @@ export function Dashboard() {
     }
     else{
     try{
-    const shareUrl=`${FRONTEND_URL}api/v1/mind/${data.hash}`
+    const shareUrl=`https://mind-vault-gules.vercel.app/api/v1/mind/${data.hash}`
 
     await navigator.clipboard.writeText(shareUrl);
 
