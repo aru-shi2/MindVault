@@ -67,7 +67,7 @@ export function Dashboard() {
     }
     else{
     try{
-    const shareUrl=`${FRONTEND_URL}/mind/${data.hash}`
+    const shareUrl=`${FRONTEND_URL}api/v1/mind/${data.hash}`
 
     await navigator.clipboard.writeText(shareUrl);
 
