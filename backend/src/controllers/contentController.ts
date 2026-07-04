@@ -42,7 +42,7 @@ const postcontent=async(req: Request,res: Response)=>{
 }
 
 const getcontent=async(req: Request,res: Response)=>{
-    const {type}: string=req.query
+    const type=req.query.type as string
     const userId=req.userId
     console.log(userId)
     let content
@@ -72,7 +72,7 @@ const delcontent=async(req: Request,res: Response)=>{
     try{
     const userId=req.userId
     const contId=req.params.contId;
-    await contentModel.deleteOne({_id:contId, userId:userId})
+    await contentModel.deleteOne({_id:contId as string, userId:userId})
     return res.status(200).json({
         msg:"Deleted successfully!"
     })

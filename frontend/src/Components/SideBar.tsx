@@ -4,8 +4,7 @@ import {
   Sun,
   Moon,
   LogOut,
-  Menu,
-  X,
+  FileTextIcon
 } from "lucide-react";
 import { YoutubeIcon } from "./icons/Youtube";
 import { TwitterIcon } from "./icons/Twitter";
@@ -22,7 +21,7 @@ export function SideBar({
 }: {
   darkMode: boolean;
   MenuOpen: boolean,
-  setTypes: React.Dispatch<React.SetStateAction<string>>;
+  setTypes: React.Dispatch<React.SetStateAction<string|null>>;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setDarkMode: (v: boolean) => void;
 }) {
@@ -122,6 +121,22 @@ return (
               darkMode={darkMode}
             />
           </div>
+
+          <div
+            onClick={() => {
+              setTypes("notes");
+              setSelect("notes");
+
+            }}
+          >
+            <SidebarItem
+              active={Select === "notes"}
+              text="Notes"
+              icon={<FileTextIcon size="1.5em" />}
+              darkMode={darkMode}
+            />
+          </div>
+
 
           <div
             onClick={() => {

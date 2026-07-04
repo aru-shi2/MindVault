@@ -12,15 +12,15 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 interface CardProps {
-  id: string;
+  id: string|undefined;
   title: string;
   link?: string;
   content?: string;
   type: "youtube" | "notes" | "twitter";
-  createdAt: string;
+  createdAt: Date|undefined;
   darkMode?: boolean;
   contId: string;
-  onDelete: () => void;
+  onDelete: (id: string) => void;
 }
 
 export const Card = ({
@@ -42,7 +42,7 @@ export const Card = ({
 
 
   useEffect(() => {
-    window.twttr?.widgets.load();
+    (window as any).twttr?.widgets.load();
   }, [link]);
 
   const openLink = () => {
@@ -123,7 +123,7 @@ export const Card = ({
        <div className={`mt-4 rounded-xl overflow-hidden border ${darkMode ? 'border-[#141414] bg-[#070707]' : 'border-slate-100 bg-slate-50'}`}>
 {type === "youtube" && (
                         <div className="relative aspect-video w-full flex justify-center">
-                          <iframe height="217" src={link} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                          <iframe height="217" src={link} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                         </div>
                     )}
 

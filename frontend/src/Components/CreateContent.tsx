@@ -3,17 +3,18 @@ import { Input } from "./Input";
 import { Button } from "./Button";
 import { useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-export function CreateContentModal({ open, onClose, darkMode }) {
+export function CreateContentModal({ open, onClose, darkMode}:{
+  open: boolean,
+  onClose:()=>void,
+  darkMode: boolean
+}) {
 
   const [Type, setType] = useState<string>("")
   const [Url, setUrl] = useState<string>("")
   const [Title, setTitle] = useState<string>("")
   const [Content, setContent] = useState<string>("")
-
-  const navigate = useNavigate();
 
   // Available fixed options
   const predefinedOptions = ["youtube", "twitter", "notes"];

@@ -25,7 +25,7 @@ const signup=async(req: Request,res: Response)=>{
 
     if(!check.success){
        return res.status(411).json({
-            msg:check.error.issues[0].message
+            msg:check.error.issues[0]?.message
         })
     }
 

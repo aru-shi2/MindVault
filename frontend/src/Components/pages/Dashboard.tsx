@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react'
 import { Button } from '../Button'
-import { PlusIcon, ShareIcon, Inbox, Menu, X } from 'lucide-react'
+import { PlusIcon, ShareIcon, Inbox, Menu } from 'lucide-react'
 import { Card } from '../Card'
 import { CreateContentModal } from '../CreateContent'
 import { SideBar } from '../SideBar'
 import toast, {Toaster} from 'react-hot-toast'
 
 interface  ArrType {
+  _id: string
   link?: string,
   contnt?: string,
-  type: "notes" | "youtube" | "blog" | "twitter",
-  title: string
+  type: "notes" | "youtube" | "twitter",
+  title: string,
+  createdAt?: Date
 }
 
 export function Dashboard() {
   const [modalOpen, setmodalOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
-  const [Types, setTypes] = useState<string|null>("all" || null)
+  const [Types, setTypes] = useState<string|null>("all")||null
   const [contArr, setcontArr] = useState<ArrType[]> ([])
   const [Share, setShare] = useState(false)
   const [MenuOpen, setMenuOpen] = useState(false)
