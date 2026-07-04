@@ -1,6 +1,4 @@
-import { ArrowRight, ShieldCheck, Mail, LayoutGridIcon, PlusIcon, ShareIcon, Sparkles, Terminal, Layers, Eye, Zap, Lock, Database, Compass, Sliders, ChevronRight,  Moon } from "lucide-react"
-import { TwitterIcon } from "../icons/Twitter";
-import { YoutubeIcon } from "../icons/Youtube";
+import { ArrowRight, ShieldCheck, Sparkles, Terminal, Layers, Eye, Zap, Lock } from "lucide-react"
 import { useNavigate } from "react-router-dom";
 import image from "../../assets/image.png"
 
@@ -51,9 +49,9 @@ export default function Home() {
   aria-hidden
   className="pointer-events-none absolute inset-0"
 >
-  <div className="absolute left-1/2 top-[55%] h-[32rem] w-[70rem] -translate-x-1/2 rounded-full bg-zinc-600/15 blur-[180px]" />
+  <div className="absolute left-1/2 top-[55%] h-128 w-280 -translate-x-1/2 rounded-full bg-zinc-600/15 blur-[180px]" />
 
-  <div className="absolute left-1/2 top-[65%] h-[20rem] w-[50rem] -translate-x-1/2 rounded-full bg-gray-400/10 blur-[140px]" />
+  <div className="absolute left-1/2 top-[65%] h-80 w-200 -translate-x-1/2 rounded-full bg-gray-400/10 blur-[140px]" />
 </div>
 
           {/* Ambient Top Tag Pill */}
@@ -63,7 +61,7 @@ export default function Home() {
           </div>
 
           <h1 className="relative z-10 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white max-w-3xl mx-auto leading-[1.1]">
-            Your Unified Knowledge Storage <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#a3a3a3] to-[#404040]">Vector Hub</span>
+            Your Unified Knowledge Storage <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-[#a3a3a3] to-[#404040]">Vector Hub</span>
           </h1>
 
           <p className="relative z-10 text-xs sm:text-sm text-[#666666] max-w-xl mx-auto leading-relaxed font-medium">
@@ -91,7 +89,7 @@ export default function Home() {
         </section>
 
         <div className="relative z-10 pb-5 flex justify-center px-4">
-  <div className="w-full max-w-4xl rounded-[24px] border border-[#1f1f1f] bg-[#0a0a0a] shadow-[0_30px_80px_rgba(0,0,0,0.7)] overflow-hidden">
+  <div className="w-full max-w-4xl rounded-3xl border border-[#1f1f1f] bg-[#0a0a0a] shadow-[0_30px_80px_rgba(0,0,0,0.7)] overflow-hidden">
     
     {/* Browser Header */}
     <div className="flex items-center gap-2 px-5 py-4 border-b border-[#1a1a1a] bg-[#0c0c0c]">
@@ -111,78 +109,106 @@ export default function Home() {
       </main>
 
       {/* 3. Features Section */}
-      <section id="features" className="w-full bg-[#0c0c0c] border-y border-[#161616] py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-          
-          <div className="text-left space-y-2 mb-16 max-w-xl">
-            <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-white flex items-center gap-1.5">
-              <Sparkles size="1em" /> CORE_CAPABILITIES
-            </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Engineered for absolute minimal workflows</h2>
-            <p className="text-xs text-[#666666]">Eliminate overhead clutter. Experience lightning-fast metadata structuring architecture.</p>
+      <section
+  id="features"
+  className="w-full bg-[#0c0c0c] border-y border-[#161616] py-20 md:py-32"
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+    {/* Section Heading */}
+    <div className="text-left space-y-2 mb-16 max-w-xl">
+      <div className="text-[15px] font-mono font-bold uppercase tracking-widest text-white flex items-center gap-1.5">
+        <Sparkles size="1em" />
+        FEATURES
+      </div>
+
+      <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+        Everything you need to organize your knowledge
+      </h2>
+
+      <p className="text-xs text-[#666666]">
+        Save notes, videos, and tweets in one place and access them whenever you need.
+      </p>
+    </div>
+
+    {/* Bento Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+      {/* Card 1 */}
+      <div className="md:col-span-2 bg-[#050505] border border-[#1c1c1c] p-6 sm:p-8 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-[#333333] hover:shadow-[0_0_20px_rgba(255,255,255,0.02)] min-h-55">
+        <div className="space-y-3">
+          <div className="h-8 w-8 rounded-lg bg-[#141414] border border-[#1f1f1f] flex items-center justify-center text-white">
+            <Layers size="1.1em" />
           </div>
 
-          {/* Asymmetric High-Contrast Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            
-            {/* Bento Card 1 */}
-            <div className="md:col-span-2 bg-[#050505] border border-[#1c1c1c] p-6 sm:p-8 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-[#333333] hover:shadow-[0_0_20px_rgba(255,255,255,0.02)] min-h-[220px]">
-              <div className="space-y-3">
-                <div className="h-8 w-8 rounded-lg bg-[#141414] border border-[#1f1f1f] flex items-center justify-center text-white">
-                  <Layers size="1.1em" />
-                </div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-white">Multi-Format Content Virtualization</h3>
-                <p className="text-xs leading-relaxed text-[#666666] max-w-md">Effortlessly catalog complex notes, deep YouTube production nodes, terminal properties, and system bookmarks cleanly into searchable index layers.</p>
-              </div>
-              <div className="pt-4 border-t border-[#161616]/60 flex items-center justify-between text-[9px] font-mono text-[#404040]">
-                <span>SYSTEM_MAPPING: FULLY_OPERATIONAL</span>
-                <ChevronRight size={11} />
-              </div>
-            </div>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-white">
+            Save Different Types of Content
+          </h3>
 
-            {/* Bento Card 2 */}
-            <div className="bg-[#050505] border border-[#1c1c1c] p-6 sm:p-8 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-[#333333] hover:shadow-[0_0_20px_rgba(255,255,255,0.02)] min-h-[220px]">
-              <div className="space-y-3">
-                <div className="h-8 w-8 rounded-lg bg-[#141414] border border-[#1f1f1f] flex items-center justify-center text-white">
-                  <Eye size="1.1em" />
-                </div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-white">Ambient Glow Focus</h3>
-                <p className="text-xs leading-relaxed text-[#666666]">A high-end UI designed strictly under tactical black tokens. No distracting multi-colored element overlays.</p>
-              </div>
-              <span className="text-[9px] font-mono text-[#404040]">UI_MODE // CONTRAST_TRUE</span>
-            </div>
-
-            {/* Bento Card 3 */}
-            <div className="bg-[#050505] border border-[#1c1c1c] p-6 sm:p-8 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-[#333333] hover:shadow-[0_0_20px_rgba(255,255,255,0.02)] min-h-[220px]">
-              <div className="space-y-3">
-                <div className="h-8 w-8 rounded-lg bg-[#141414] border border-[#1f1f1f] flex items-center justify-center text-white">
-                  <Zap size="1.1em" />
-                </div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-white">Instant Capture Vectors</h3>
-                <p className="text-xs leading-relaxed text-[#666666]">Integrated with an interactive workspace overlay mechanism enabling hotkeys for record creation.</p>
-              </div>
-              <span className="text-[9px] font-mono text-[#404040]">LATENCY // 0.04MS</span>
-            </div>
-
-            {/* Bento Card 4 */}
-            <div className="md:col-span-2 bg-[#050505] border border-[#1c1c1c] p-6 sm:p-8 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-[#333333] hover:shadow-[0_0_20px_rgba(255,255,255,0.02)] min-h-[220px]">
-              <div className="space-y-3">
-                <div className="h-8 w-8 rounded-lg bg-[#141414] border border-[#1f1f1f] flex items-center justify-center text-white">
-                  <Lock size="1.1em" />
-                </div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-white">Encrypted Handshake</h3>
-                <p className="text-xs leading-relaxed text-[#666666] max-w-md">Your workspaces are mapped using hardcoded hash references to isolate and secure data packets perfectly.</p>
-              </div>
-              <div className="pt-4 border-t border-[#161616]/60 flex items-center justify-between text-[9px] font-mono text-[#404040]">
-                <span>SECURITY_SCHEMAS // HARDENED</span>
-                <ShieldCheck size={12} className="text-emerald-500" />
-              </div>
-            </div>
-
-          </div>
-
+          <p className="text-xs leading-relaxed text-[#666666] max-w-md">
+            Save notes, YouTube videos, and tweets in one place without switching
+            between different apps.
+          </p>
         </div>
-      </section>
+      </div>
+
+      {/* Card 2 */}
+      <div className="bg-[#050505] border border-[#1c1c1c] p-6 sm:p-8 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-[#333333] hover:shadow-[0_0_20px_rgba(255,255,255,0.02)] min-h-55">
+        <div className="space-y-3">
+          <div className="h-8 w-8 rounded-lg bg-[#141414] border border-[#1f1f1f] flex items-center justify-center text-white">
+            <Eye size="1.1em" />
+          </div>
+
+          <h3 className="text-xs font-bold uppercase tracking-wider text-white">
+            Clean and Simple Design
+          </h3>
+
+          <p className="text-xs leading-relaxed text-[#666666]">
+            A distraction-free interface that keeps your content easy to read and
+            simple to manage.
+          </p>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className="bg-[#050505] border border-[#1c1c1c] p-6 sm:p-8 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-[#333333] hover:shadow-[0_0_20px_rgba(255,255,255,0.02)] min-h-55">
+        <div className="space-y-3">
+          <div className="h-8 w-8 rounded-lg bg-[#141414] border border-[#1f1f1f] flex items-center justify-center text-white">
+            <Zap size="1.1em" />
+          </div>
+
+          <h3 className="text-xs font-bold uppercase tracking-wider text-white">
+            Quick Content Capture
+          </h3>
+
+          <p className="text-xs leading-relaxed text-[#666666]">
+            Add new notes, videos, or tweets in just a few clicks and keep your
+            ideas organized instantly.
+          </p>
+        </div>
+      </div>
+
+      {/* Card 4 */}
+      <div className="md:col-span-2 bg-[#050505] border border-[#1c1c1c] p-6 sm:p-8 rounded-xl flex flex-col justify-between transition-all duration-300 hover:border-[#333333] hover:shadow-[0_0_20px_rgba(255,255,255,0.02)] min-h-55">
+        <div className="space-y-3">
+          <div className="h-8 w-8 rounded-lg bg-[#141414] border border-[#1f1f1f] flex items-center justify-center text-white">
+            <Lock size="1.1em" />
+          </div>
+
+          <h3 className="text-xs font-bold uppercase tracking-wider text-white">
+            Secure Sharing
+          </h3>
+
+          <p className="text-xs leading-relaxed text-[#666666] max-w-md">
+            Share your saved content with a unique link while keeping your
+            workspace private and secure.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* 4. Bottom Call-To-Action (CTA) Platform Frame */}
       <section id="architecture" className="max-w-4xl mx-auto w-full px-4 sm:px-6 md:px-8 py-16 md:py-24 text-center">

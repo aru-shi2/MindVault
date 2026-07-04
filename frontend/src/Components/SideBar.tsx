@@ -10,15 +10,13 @@ import { YoutubeIcon } from "./icons/Youtube";
 import { TwitterIcon } from "./icons/Twitter";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export function SideBar({
   darkMode,
   setDarkMode,
   setTypes,
-  MenuOpen,
-  setMenuOpen
-}: {
+  MenuOpen}: {
   darkMode: boolean;
   MenuOpen: boolean,
   setTypes: React.Dispatch<React.SetStateAction<string|null>>;

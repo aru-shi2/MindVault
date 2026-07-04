@@ -2,14 +2,13 @@ import {
   ExternalLinkIcon,
   Trash2Icon,
   FileTextIcon,
-  LinkIcon,
 } from "lucide-react";
 import { Button } from "./Button";
 import { YoutubeIcon } from "./icons/Youtube";
 import { TwitterIcon } from "./icons/Twitter";
 import { formatDistanceToNow } from "date-fns";
-import { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 interface CardProps {
   id: string|undefined;
@@ -138,7 +137,7 @@ export const Card = ({
   {type === "notes" && (
     <div  className="p-4">
       <p
-        className={`h-48 text-sm leading-7 whitespace-pre-wrap break-words ${
+        className={`h-48 text-sm leading-7 whitespace-pre-wrap wrap-break-words ${
           darkMode ? "text-slate-300" : "text-slate-700"
         }`}
       >

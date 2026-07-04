@@ -1,4 +1,4 @@
-import { ArrowRight, ShieldCheck, Mail, Lock } from "lucide-react"
+import { ArrowRight, Mail, Lock } from "lucide-react"
 
 export default function SigninPage() {
   return (

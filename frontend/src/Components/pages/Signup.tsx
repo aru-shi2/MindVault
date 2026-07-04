@@ -1,5 +1,4 @@
-import { FileTextIcon, ArrowRight, ShieldCheck, Mail, Lock, User } from "lucide-react"
-import { Input } from "../Input"
+import { ArrowRight, Mail, Lock } from "lucide-react"
 import { useState } from "react"
 import toast, {Toaster} from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
