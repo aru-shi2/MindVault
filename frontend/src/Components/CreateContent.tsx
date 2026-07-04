@@ -11,6 +11,7 @@ export function CreateContentModal({ open, onClose, darkMode }) {
   const [Type, setType] = useState<string>("")
   const [Url, setUrl] = useState<string>("")
   const [Title, setTitle] = useState<string>("")
+  const [Content, setContent] = useState<string>("")
 
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ export function CreateContentModal({ open, onClose, darkMode }) {
       setTitle("")
       setUrl("")
       setType("")
+      setContent("")
     }
   }, [open])
 
@@ -63,7 +65,8 @@ export function CreateContentModal({ open, onClose, darkMode }) {
         body: JSON.stringify({
           type: Type,
           link: Type === "youtube" ? getYtId(Url) :
-                Type === "twitter" ? getTweetId(Url) : "",
+                Type === "twitter" ? getTweetId(Url) : undefined,
+          contnt: Type==="notes"?Content:undefined,
           title: Title || Type // Defaults to the type name if title is empty
         }),
       });
@@ -135,8 +138,8 @@ export function CreateContentModal({ open, onClose, darkMode }) {
               </div>
 
               <div className="space-y-1.5">
-                <label className={`text-[10px] font-bold uppercase tracking-wider block ${darkMode ? 'text-[#525252]' : 'text-slate-400'}`}>URL Anchor Link</label>
-                <Input value={Url} placeholder={"https://example.com/resource"} valueChange={setUrl} darkMode={darkMode} />
+                <label className={`text-[10px] font-bold uppercase tracking-wider block ${darkMode ? 'text-[#525252]' : 'text-slate-400'}`}>{Type==="notes"?"Content":"Url"}</label>
+                <Input value={Type==="notes"?Content:Url} placeholder={Type=="notes"?"Enter Content here":"https://example.com/resource"} valueChange={Type==="notes"?setContent:setUrl} darkMode={darkMode} />
               </div>
               
               <div className="space-y-1.5">

@@ -6,7 +6,8 @@ interface Iuser extends Document {
 }
 
 interface Icontent extends Document {
-    link: string,
+    link?: string,
+    contnt?:string,
     type: string,
     title: string,
     tags?: mongoose.Types.ObjectId[],
@@ -38,6 +39,7 @@ const userSchema= new Schema <Iuser>({
 const contentSchema=new Schema <Icontent>(
 {
     link: String,
+    contnt: String,
     type: String,
     title: String,
     tags: [{

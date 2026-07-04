@@ -1,1 +1,4 @@
 @import "tailwindcss";
+.twitter-tweet {
+  margin: 0 !important;
+}

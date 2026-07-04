@@ -2,6 +2,7 @@ import { ArrowRight, ShieldCheck, Mail, LayoutGridIcon, PlusIcon, ShareIcon, Spa
 import { TwitterIcon } from "../icons/Twitter";
 import { YoutubeIcon } from "../icons/Youtube";
 import { useNavigate } from "react-router-dom";
+import image from "../../assets/image.png"
 
 export default function Home() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#a3a3a3] font-sans antialiased selection:bg-indigo-500/10 flex flex-col justify-between overflow-x-hidden">
+    <div className=" min-h-screen bg-[#050505] text-[#a3a3a3] font-sans antialiased selection:bg-indigo-500/10 flex flex-col justify-between overflow-x-hidden">
       
       {/* 1. Global Premium Navigation Header Bar */}
       <header className="w-full border-b border-[#161616] bg-[#0c0c0c]/80 backdrop-blur-md fixed top-0 left-0 z-50">
@@ -42,20 +43,30 @@ export default function Home() {
       </header>
 
       {/* 2. Hero Section */}
-      <main className="pt-28 flex-1">
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-12 md:pt-20 pb-16 text-center space-y-6">
+      <main className="pt-25 flex-1">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-12 md:pt-20 pb-16 text-center space-y-6">
           
+          {/* Hero Ambient Gray Gradient */}
+<div
+  aria-hidden
+  className="pointer-events-none absolute inset-0"
+>
+  <div className="absolute left-1/2 top-[55%] h-[32rem] w-[70rem] -translate-x-1/2 rounded-full bg-zinc-600/15 blur-[180px]" />
+
+  <div className="absolute left-1/2 top-[65%] h-[20rem] w-[50rem] -translate-x-1/2 rounded-full bg-gray-400/10 blur-[140px]" />
+</div>
+
           {/* Ambient Top Tag Pill */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0c0c0c] border border-[#1c1c1c] shadow-[0_0_15px_rgba(255,255,255,0.02)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#ffffff] shadow-[0_0_6px_rgba(255,255,255,1)]"></span>
-            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#ffffff]">Protocol Update v1.0.0 Live</span>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#ffffff]">v1.0.0 Live</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white max-w-3xl mx-auto leading-[1.1]">
+          <h1 className="relative z-10 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white max-w-3xl mx-auto leading-[1.1]">
             Your Unified Knowledge Storage <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#a3a3a3] to-[#404040]">Vector Hub</span>
           </h1>
 
-          <p className="text-xs sm:text-sm text-[#666666] max-w-xl mx-auto leading-relaxed font-medium">
+          <p className="relative z-10 text-xs sm:text-sm text-[#666666] max-w-xl mx-auto leading-relaxed font-medium">
             MindVault offers a premium, high-contrast digital repository to structure links, capture transient thoughts, and synchronize stream memories natively under secondary encryptions.
           </p>
 
@@ -63,142 +74,40 @@ export default function Home() {
             <button 
               onClick={handlestart}
               type="button"
-              className="w-full sm:w-auto font-semibold tracking-wide transition-all duration-300 flex items-center justify-center border border-transparent bg-[#ffffff] text-[#050505] rounded-xl text-xs gap-1.5 px-6 py-3 shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+              className="w-full sm:w-auto font-semibold tracking-wide transition-all duration-300 flex items-center justify-center border border-transparent bg-[#ffffff] text-[#050505] rounded-xl text-xs gap-1.5 px-6 py-3 shadow-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
             >
               <span>Get started - it's free</span>
               <ArrowRight size="1.1em" />
             </button>
-            <button 
-              type="button"
+            <a
+             href="#features"
               className="w-full sm:w-auto font-semibold tracking-wide transition-all duration-300 flex items-center justify-center border border-[#222222] bg-[#121212] text-[#e5e7eb] rounded-xl text-xs gap-1.5 px-6 py-3 hover:bg-[#1a1a1a] hover:border-[#444444] hover:shadow-[0_0_12px_rgba(255,255,255,0.04)]"
             >
               <Terminal size="1.1em" className="text-[#525252]" />
               <span>Read Architecture Specification</span>
-            </button>
-          </div>
-
-          {/* High-Fidelity Mock App Preview synced with Layout Schema from Screenshot (208).png */}
-          <div id="preview" className="pt-16 max-w-5xl mx-auto">
-            <div className="bg-[#0c0c0c] border border-[#1c1c1c] rounded-2xl p-1 shadow-[0_0_50px_rgba(255,255,255,0.02)] text-left overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-5 min-h-[440px]">
-                
-                {/* Sidebar Layer mapping Screenshot (208).png layout */}
-                <div className="md:col-span-1 border-r border-[#161616] p-4 hidden md:block space-y-6 bg-[#090909]">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-white tracking-wider">
-                      <div className="h-5 w-5 rounded bg-[#161616] flex items-center justify-center text-[9px]">M</div>
-                      MINDVAULT
-                    </div>
-                    <div className="h-5 w-5 rounded border border-[#222222] flex items-center justify-center text-[#525252]">
-                      <Moon size={11} />
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="text-[9px] font-mono font-bold text-[#404040] uppercase tracking-widest px-2">Workspaces</div>
-                    <nav className="space-y-1">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-white bg-[#141414] px-2.5 py-1.5 rounded-lg cursor-pointer">
-                        <LayoutGridIcon size={12} className="text-[#525252]"/> All Memories
-                      </div>
-                      <div className="flex items-center gap-2 text-xs font-medium text-[#525252] hover:text-[#a3a3a3] px-2.5 py-1.5 cursor-pointer transition-colors">
-                        <TwitterIcon/> Twitter Feed
-                      </div>
-                      <div className="flex items-center gap-2 text-xs font-medium text-[#525252] hover:text-[#a3a3a3] px-2.5 py-1.5 cursor-pointer transition-colors">
-                        <YoutubeIcon/> YouTube Sync
-                      </div>
-                    </nav>
-                  </div>
-                </div>
-
-                {/* Core App View Frame displaying varied unique elements */}
-                <div className="md:col-span-4 p-5 sm:p-6 space-y-6 bg-[#070707]">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#161616] pb-4">
-                    <div>
-                      <h3 className="text-base font-bold tracking-tight text-white">All Captured Memories</h3>
-                      <p className="text-[11px] text-[#525252] mt-0.5">Your unified knowledge storage vector hub.</p>
-                    </div>
-                    <div className="flex items-center gap-2 self-start sm:self-auto">
-                      <div className="px-2.5 py-1.5 text-[11px] font-semibold bg-[#121212] border border-[#222222] text-[#e5e7eb] rounded-xl flex items-center gap-1.5 cursor-pointer hover:border-[#333333] transition-colors">
-                        <ShareIcon size="0.9em" className="text-[#525252]"/> Share Content
-                      </div>
-                      <div className="px-2.5 py-1.5 text-[11px] font-semibold bg-[#111827] border border-[#1f2937]/50 text-slate-200 rounded-xl flex items-center gap-1 cursor-pointer hover:bg-slate-900 transition-colors">
-                        <PlusIcon size="0.9em"/> Add Content
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 3 Unique Content Repositories Mapping Diverse Content States */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    
-                    {/* Unique Content Card 1: YouTube Dynamic Embed */}
-                    <div className="bg-[#0d0d0d] border border-[#181818] rounded-xl p-4 space-y-3 shadow-[0_0_15px_rgba(255,255,255,0.01)] hover:border-[#222222] transition-colors">
-                      <div className="flex items-center gap-2">
-                        <div className="p-1 bg-[#141414] border border-[#1f1f1f] rounded text-[10px]">📺</div>
-                        <span className="text-[9px] uppercase font-mono tracking-widest font-bold text-[#525252]">youtube</span>
-                      </div>
-                      <div className="text-xs font-semibold text-[#f3f4f6]">fge</div>
-                      
-                      <div className="relative rounded-lg overflow-hidden border border-[#141414] aspect-video group cursor-pointer bg-zinc-900">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 z-10" />
-                        <div className="absolute inset-0 flex items-center justify-center z-20">
-                          <div className="h-7 w-10 bg-red-600 rounded-lg flex items-center justify-center text-white text-[10px] shadow-md">▶</div>
-                        </div>
-                        <div className="absolute bottom-2 left-2 right-2 z-20">
-                          <p className="text-[9px] font-bold text-white truncate">Twinkle Twinkle Little Star</p>
-                          <p className="text-[7px] text-[#666666]">Happy Bachpan</p>
-                        </div>
-                      </div>
-                      <div className="pt-0.5">
-                        <span className="text-[9px] font-mono text-[#525252] bg-[#141414] px-1.5 py-0.5 rounded border border-[#1f1f1f]">#youtube</span>
-                      </div>
-                    </div>
-
-                    {/* Unique Content Card 2: Documentation Spec Node */}
-                    <div className="bg-[#0d0d0d] border border-[#181818] rounded-xl p-4 space-y-3 shadow-[0_0_15px_rgba(255,255,255,0.01)] hover:border-[#222222] transition-colors flex flex-col justify-between">
-                      <div className="space-y-3">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <div className="p-1 bg-[#141414] border border-[#1f1f1f] rounded text-[10px]">📝</div>
-                            <span className="text-[9px] uppercase font-mono tracking-widest font-bold text-[#525252]">architecture</span>
-                          </div>
-                          <span className="text-[8px] font-mono text-[#404040]">1h ago</span>
-                        </div>
-                        <div className="text-xs font-semibold text-[#f3f4f6]">Distributed Consensus Indexing</div>
-                        <p className="text-[10px] text-[#525252] leading-relaxed line-clamp-3">Evaluating performance overhead matrices of core Raft pipelines across client nodes.</p>
-                      </div>
-                      <div className="pt-2">
-                        <span className="text-[9px] font-mono text-[#525252] bg-[#141414] px-1.5 py-0.5 rounded border border-[#1f1f1f]">#sys-design</span>
-                      </div>
-                    </div>
-
-                    {/* Unique Content Card 3: Live Link Vector */}
-                    <div className="bg-[#0d0d0d] border border-[#181818] rounded-xl p-4 space-y-3 shadow-[0_0_15px_rgba(255,255,255,0.01)] hover:border-[#222222] transition-colors flex flex-col justify-between">
-                      <div className="space-y-3">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <div className="p-1 bg-[#141414] border border-[#1f1f1f] rounded text-[10px]">🔗</div>
-                            <span className="text-[9px] uppercase font-mono tracking-widest font-bold text-[#525252]">bookmarks</span>
-                          </div>
-                          <span className="text-[8px] font-mono text-[#404040]">12h ago</span>
-                        </div>
-                        <div className="text-xs font-semibold text-[#f3f4f6]">PostgreSQL Heavily Optimized Indexing Strategies</div>
-                        <div className="p-2 rounded bg-[#050505] border border-[#141414] text-[9px] font-mono text-[#525252] truncate">
-                          postgres.spec/indexing-heavy-loads
-                        </div>
-                      </div>
-                      <div className="pt-2">
-                        <span className="text-[9px] font-mono text-[#525252] bg-[#141414] px-1.5 py-0.5 rounded border border-[#1f1f1f]">#database</span>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
+            </a>
           </div>
 
         </section>
+
+        <div className="relative z-10 pb-5 flex justify-center px-4">
+  <div className="w-full max-w-4xl rounded-[24px] border border-[#1f1f1f] bg-[#0a0a0a] shadow-[0_30px_80px_rgba(0,0,0,0.7)] overflow-hidden">
+    
+    {/* Browser Header */}
+    <div className="flex items-center gap-2 px-5 py-4 border-b border-[#1a1a1a] bg-[#0c0c0c]">
+      <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+      <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+      <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+    </div>
+
+    {/* Screenshot */}
+    <img
+      src={image}
+      alt="MindVault Dashboard Preview"
+      className="w-full object-cover"
+    />
+  </div>
+</div>
       </main>
 
       {/* 3. Features Section */}

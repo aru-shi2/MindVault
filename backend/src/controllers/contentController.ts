@@ -3,11 +3,12 @@ import { contentModel } from "../models/db";
 import * as z from "zod"
 
 const postcontent=async(req: Request,res: Response)=>{
-    const {link, type, title}= req.body 
+    const {link, contnt, type, title}= req.body 
     const userId=req.userId
 
     const Contschema=z.object({
-            link: z.string(),
+            link: z.string().optional(),
+            contnt: z.string().optional(),
             type: z.string(),
             title: z.string(),
             tags: z.array(z.string()).optional()
@@ -24,6 +25,7 @@ const postcontent=async(req: Request,res: Response)=>{
     try{
         await contentModel.create({
             link,
+            contnt,
             type,
             title,
             tags:[],
@@ -69,10 +71,10 @@ const getcontent=async(req: Request,res: Response)=>{
 const delcontent=async(req: Request,res: Response)=>{
     try{
     const userId=req.userId
-    const contId=req.params.contId
+    const contId=req.params.contId;
     await contentModel.deleteOne({_id:contId, userId:userId})
     return res.status(200).json({
-        msg:"deleted successfully!"
+        msg:"Deleted successfully!"
     })
     }
     catch(e){
