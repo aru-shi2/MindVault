@@ -27,7 +27,7 @@ export function Dashboard() {
     const t: string|null=localStorage.getItem("token");
 
   async function fetchCont() {
-    const res=await fetch(`http://localhost:3000/api/v1/content?type=${Types}`,{
+    const res=await fetch(`https://mindvault-e8oq.onrender.com/api/v1/content?type=${Types}`,{
       headers:{
         'Authorization':`Bearer ${t}`,
         'Content-Type':'application/json'
@@ -45,7 +45,7 @@ export function Dashboard() {
 
   async function shareBrain() {
     setShare((prev)=>!prev);
-    const res=await fetch(`http://localhost:3000/api/v1/mind/`,{
+    const res=await fetch(`https://mindvault-e8oq.onrender.com/api/v1/mind/`,{
       method:'POST',
       headers:{
         'Authorization':`Bearer ${t}`,

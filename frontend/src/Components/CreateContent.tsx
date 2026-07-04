@@ -57,7 +57,7 @@ export function CreateContentModal({ open, onClose, darkMode}:{
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/v1/content/add", {
+      const res = await fetch("https://mindvault-e8oq.onrender.com/api/v1/content/add", {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${t}`,

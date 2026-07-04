@@ -58,7 +58,7 @@ export const Card = ({
   const delContent = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/v1/content/delete/${contId}`,
+        `https://mindvault-e8oq.onrender.com/api/v1/content/delete/${contId}`,
         {
           method: "DELETE",
           headers: {

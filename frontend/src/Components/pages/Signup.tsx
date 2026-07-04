@@ -13,7 +13,7 @@ const navigate=useNavigate();
 
 const handleSignup=async() => {
   try{
-  const res=await fetch("http://localhost:3000/api/v1/auth/signup",{
+  const res=await fetch("https://mindvault-e8oq.onrender.com/api/v1/auth/signup",{
     method:'POST',
     headers:{
       'Content-Type':'application/json'
