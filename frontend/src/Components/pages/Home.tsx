@@ -235,19 +235,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Symmetrical System Footer Branding */}
-      <footer className="w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-6 md:px-8 py-6 border-t border-[#161616]/40 text-[10px] font-mono tracking-tight text-[#404040]">
-        <div>© 2026 MindVault Inc. All rights reserved.</div>
-        <div className="flex items-center gap-4">
-          <a href="#terms" className="hover:text-[#666666] transition-colors">TERMS_OF_SERVICE</a>
-          <span className="text-[#1f1f1f]">•</span>
-          <a href="#privacy" className="hover:text-[#666666] transition-colors">PRIVACY_POLICY</a>
-          <span className="text-[#1f1f1f]">•</span>
-          <span className="text-[#525252] flex items-center gap-1">
-            <span className="h-1 w-1 bg-emerald-500 rounded-full animate-pulse"></span> NODE_STATUS: ONLINE
-          </span>
-        </div>
-      </footer>
+      {/* Footer */}
+<footer className="w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-6 md:px-8 py-6 border-t border-[#161616]/40 text-xs text-[#5a5a5a]">
+  <div>
+    © 2026 MindVault. Built for capturing and organizing your knowledge.
+  </div>
+
+  <div className="flex items-center gap-4 flex-wrap justify-center">
+    <a
+      href="#features"
+      className="hover:text-[#a3a3a3] transition-colors"
+    >
+      Features
+    </a>
+
+    <span className="text-[#1f1f1f]">•</span>
+
+    <a
+      href="#privacy"
+      className="hover:text-[#a3a3a3] transition-colors"
+    >
+      Privacy
+    </a>
+
+    <span className="text-[#1f1f1f]">•</span>
+
+    <a
+      href="#contact"
+      className="hover:text-[#a3a3a3] transition-colors"
+    >
+      Contact
+    </a>
+  </div>
+</footer>
 
     </div>
   )
