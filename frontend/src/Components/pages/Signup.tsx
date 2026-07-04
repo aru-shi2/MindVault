@@ -2,6 +2,7 @@ import { ArrowRight, Mail, Lock } from "lucide-react"
 import { useState } from "react"
 import toast, {Toaster} from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 
 export default function SignupPage() {
@@ -12,7 +13,7 @@ const navigate=useNavigate();
 
 const handleSignup=async() => {
   try{
-  const res=await fetch("https://mindvault-e8oq.onrender.com/api/v1/auth/signup",{
+  const res=await fetch(`${BACKEND_URL}api/v1/auth/signup`,{
     method:'POST',
     headers:{
       'Content-Type':'application/json'

@@ -9,6 +9,7 @@ import { TwitterIcon } from "./icons/Twitter";
 import { formatDistanceToNow } from "date-fns";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 interface CardProps {
   id: string|undefined;
@@ -57,7 +58,7 @@ export const Card = ({
   const delContent = async () => {
     try {
       const res = await fetch(
-        `https://mindvault-e8oq.onrender.com/api/v1/content/delete/${contId}`,
+        `${BACKEND_URL}api/v1/content/delete/${contId}`,
         {
           method: "DELETE",
           headers: {

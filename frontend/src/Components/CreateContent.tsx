@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import { useEffect } from "react";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export function CreateContentModal({ open, onClose, darkMode}:{
   open: boolean,
@@ -57,7 +58,7 @@ export function CreateContentModal({ open, onClose, darkMode}:{
     }
 
     try {
-      const res = await fetch("https://mindvault-e8oq.onrender.com/api/v1/content/add", {
+      const res = await fetch(`${BACKEND_URL}api/v1/content/add`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${t}`,
