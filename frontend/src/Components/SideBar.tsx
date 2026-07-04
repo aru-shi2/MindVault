@@ -95,7 +95,7 @@ return (
 </div>
 </div>
       {/* Sidebar Content */}
-      <div className="flex flex-col flex-1 w-full justify-between">
+<div className="flex flex-col flex-1 w-full overflow-y-auto">
         <div className="flex flex-col gap-2">
           <span
             className={`px-2 text-[10px] font-bold uppercase tracking-widest block mb-2 mt-8 ${
@@ -165,6 +165,7 @@ return (
           </div>
         </div>
 
+<div className="mt-auto">
         <div
           onClick={() => {
             localStorage.removeItem("token");
@@ -181,6 +182,7 @@ return (
             icon={<LogOut size="1.5em" />}
             darkMode={darkMode}
           />
+          </div>
         </div>
       </div>
     </div>
