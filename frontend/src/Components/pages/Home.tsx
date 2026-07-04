@@ -25,9 +25,9 @@ export default function Home() {
           </div>
           
           <div className="flex items-center gap-3">
-            <a href="#login" className="text-[11px] font-semibold text-[#525252] hover:text-[#e5e7eb] transition-colors px-2 py-1">
+            <button onClick={()=>navigate("/signin")} className="text-[11px] font-semibold text-[#525252] hover:text-[#e5e7eb] transition-colors px-2 py-1">
               Sign In
-            </a>
+            </button>
             <button 
               onClick={handlestart}
               type="button"

@@ -1,8 +1,48 @@
 import { ArrowRight, Mail, Lock } from "lucide-react"
+import { useState } from "react"
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+import toast, {Toaster} from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 export default function SigninPage() {
+  const navigate=useNavigate();
+
+    const [Usern, setUsern] = useState("")
+  const [Pass, setPass] = useState("")
+
+  const handleLogin=async()=>{
+    try{
+      const res=await fetch(`${BACKEND_URL}api/v1/auth/login`,{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          username:Usern,
+          password:Pass
+        })
+      })
+    
+  const data=await res.json();
+  localStorage.setItem("token",data.token)
+  
+  if(!res.ok){
+    toast.error(data.msg)
+  }else{
+    toast.success(data.msg);
+    setTimeout(() => {
+      navigate("/content")
+    }, 2000);
+  }
+  }catch(e){
+  toast.error("Something went wrong!")
+  }
+  }
+
   return (
     <div className="min-h-screen bg-[#050505] text-[#a3a3a3] font-sans antialiased selection:bg-indigo-500/10 flex flex-col justify-between p-4 sm:p-6 md:p-8">
+
+      <Toaster/>
       
       {/* Top Header Logo Navigation */}
       <header className="w-full max-w-7xl mx-auto flex items-center justify-between py-4">
@@ -40,8 +80,9 @@ export default function SigninPage() {
               <div className="w-full">
                 <input 
                   type="email" 
+                 value={Usern}
                   placeholder="name@domain.com" 
-                  disabled
+                  onChange={(e)=>setUsern(e.target.value)}
                   className="w-full px-4 py-2.5 text-xs bg-[#050505] text-[#f3f4f6] border border-[#1f1f1f] rounded-xl placeholder-[#4b5563] outline-none transition-all shadow-2xs" 
                 />
               </div>
@@ -56,8 +97,9 @@ export default function SigninPage() {
               <div className="w-full">
                 <input 
                   type="password" 
+                  value={Pass}
                   placeholder="••••••••••••" 
-                  disabled
+                  onChange={(e)=>setPass(e.target.value)}
                   className="w-full px-4 py-2.5 text-xs bg-[#050505] text-[#f3f4f6] border border-[#1f1f1f] rounded-xl placeholder-[#4b5563] outline-none transition-all shadow-2xs" 
                 />
               </div>
@@ -65,7 +107,8 @@ export default function SigninPage() {
 
             {/* Primary Action Button */}
             <div className="pt-2">
-              <button 
+              <button
+              onClick={handleLogin} 
                 type="button"
                 className="w-full font-semibold tracking-wide transition-all duration-300 shrink-0 select-none flex items-center justify-center border border-transparent bg-[#ffffff] text-[#050505] rounded-xl text-xs gap-1.5 px-4 py-2.5 shadow-sm hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]"
               >
