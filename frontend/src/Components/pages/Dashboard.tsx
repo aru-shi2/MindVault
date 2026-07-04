@@ -6,6 +6,7 @@ import { CreateContentModal } from '../CreateContent'
 import { SideBar } from '../SideBar'
 import toast, {Toaster} from 'react-hot-toast'
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
 
 interface  ArrType {
   _id: string
@@ -66,7 +67,7 @@ export function Dashboard() {
     }
     else{
     try{
-    const shareUrl=`https://localhost:5173/${data.hash}`
+    const shareUrl=`${FRONTEND_URL}/mind/${data.hash}`
 
     await navigator.clipboard.writeText(shareUrl);
 
