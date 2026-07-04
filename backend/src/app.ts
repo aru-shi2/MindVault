@@ -12,6 +12,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json())
 app.use(cors());
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ message: "ok" });
+});
+
 app.use("/api/v1/auth",authRouter)
 app.use("/api/v1/content",contentRouter)
 app.use("/api/v1/mind",shareRouter)
