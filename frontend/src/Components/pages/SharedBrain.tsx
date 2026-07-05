@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Inbox, Menu } from 'lucide-react'
 import { Card } from '../Card'
 import { SideBar } from '../SideBar'
-import {Toaster} from 'react-hot-toast'
 import { useParams } from 'react-router-dom'
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -44,7 +43,6 @@ export function SharedBrain() {
   return (
     <div className={`min-h-screen font-sans antialiased selection:bg-indigo-500/10 transition-colors duration-300 ${darkMode ? 'bg-[#050505] text-slate-200' : 'bg-[#f8fafc] text-slate-800'}`}>
 
-      <Toaster/>
       <SideBar hideSignout={true} MenuOpen={MenuOpen} setMenuOpen={setMenuOpen} setTypes={setTypes} darkMode={darkMode} setDarkMode={setDarkMode} />
 
       {MenuOpen && (

@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 import { Input } from "./Input";
 import { Button } from "./Button";
 import { useState } from "react";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useEffect } from "react";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -91,7 +91,6 @@ export function CreateContentModal({ open, onClose, darkMode}:{
       {open && (
         <div className="w-screen h-screen bg-[#000000]/70 fixed top-0 left-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
           <div className={`w-full max-w-sm border rounded-2xl shadow-xl overflow-hidden transform transition-all ${darkMode ? 'bg-[#0c0c0c] border-[#1c1c1c]' : 'bg-white border-slate-200'}`}>
-            <Toaster />
 
             {/* Modal Navigation Control Header */}
             <div className={`p-4 border-b flex items-center justify-between ${darkMode ? 'bg-[#080808]/50 border-[#1c1c1c]' : 'bg-slate-50/50 border-slate-100'}`}>

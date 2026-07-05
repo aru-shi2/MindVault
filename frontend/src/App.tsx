@@ -4,11 +4,13 @@ import { Dashboard } from './Components/pages/Dashboard'
 import Home from './Components/pages/Home'
 import SignupPage from './Components/pages/Signup'
 import SigninPage from './Components/pages/Signin'
+import {Toaster} from 'react-hot-toast'
 import { SharedBrain } from './Components/pages/SharedBrain'
 
 function App() {
   return (
     <BrowserRouter>
+    <Toaster position="top-right"/>
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/content' element={<Dashboard/>}/>

@@ -1,7 +1,7 @@
 import { ArrowRight, Mail, Lock } from "lucide-react"
 import { useState } from "react"
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-import toast, {Toaster} from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 
 export default function SigninPage() {
@@ -41,8 +41,6 @@ export default function SigninPage() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-[#a3a3a3] font-sans antialiased selection:bg-indigo-500/10 flex flex-col justify-between p-4 sm:p-6 md:p-8">
-
-      <Toaster/>
       
       {/* Top Header Logo Navigation */}
       <header className="w-full max-w-7xl mx-auto flex items-center justify-between py-4">

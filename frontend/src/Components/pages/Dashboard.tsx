@@ -4,7 +4,7 @@ import { PlusIcon, ShareIcon, Inbox, Menu } from 'lucide-react'
 import { Card } from '../Card'
 import { CreateContentModal } from '../CreateContent'
 import { SideBar } from '../SideBar'
-import toast, {Toaster} from 'react-hot-toast'
+import toast from 'react-hot-toast'
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 interface  ArrType {
@@ -19,7 +19,7 @@ interface  ArrType {
 export function Dashboard() {
   const [modalOpen, setmodalOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
-  const [Types, setTypes] = useState<string|null>("all")||null
+  const [Types, setTypes] = useState<string|null>("all")
   const [contArr, setcontArr] = useState<ArrType[]> ([])
   const [Share, setShare] = useState(false)
   const [MenuOpen, setMenuOpen] = useState(false)
@@ -41,11 +41,12 @@ export function Dashboard() {
 
   useEffect(() => {
     fetchCont();
-  }, [modalOpen || Types])
+  }, [modalOpen, Types])
 
 
   async function shareBrain() {
-    setShare((prev)=>!prev);
+    const newShare: boolean=!Share;
+    setShare(newShare);
     const res=await fetch(`${BACKEND_URL}api/v1/mind/`,{
       method:'POST',
       headers:{
@@ -59,7 +60,7 @@ export function Dashboard() {
     const data=await res.json();
     console.log(data.hash)
     
-    if(!Share){
+    if(!newShare){
       toast("Stopped sharing",{
         icon:"⚠"
       })
@@ -81,7 +82,7 @@ export function Dashboard() {
   return (
     <div className={`min-h-screen font-sans antialiased selection:bg-indigo-500/10 transition-colors duration-300 ${darkMode ? 'bg-[#050505] text-slate-200' : 'bg-[#f8fafc] text-slate-800'}`}>
 
-      <Toaster/>
+
       <SideBar MenuOpen={MenuOpen} setMenuOpen={setMenuOpen} setTypes={setTypes} darkMode={darkMode} setDarkMode={setDarkMode} />
 
       {MenuOpen && (
