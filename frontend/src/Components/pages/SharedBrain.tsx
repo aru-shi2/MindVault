@@ -20,7 +20,7 @@ export function SharedBrain() {
   const [darkMode, setDarkMode] = useState(true);
   const [contArr, setcontArr] = useState<ArrType[]> ([])
   const [MenuOpen, setMenuOpen] = useState(false)
-  const [Types, setTypes] = useState<string|null>("all")||null
+  const [, setTypes] = useState<string|null>("all")||null
   
 
   async function fetchBrain() {
