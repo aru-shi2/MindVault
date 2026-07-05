@@ -30,7 +30,7 @@ export function SharedBrain() {
       }
     })
     const data=await res.json()
-    setcontArr(data.content)
+    setcontArr(data.content || [])
   }
 
   useEffect(() => {
@@ -85,7 +85,7 @@ export function SharedBrain() {
 </div> 
         </header>
 
-{contArr.length === 0 && (
+{contArr?.length === 0 && (
   <div className={`flex flex-col items-center justify-center min-h-[50vh] ${darkMode? 'text-gray-600': 'text-black'}`}>
     <Inbox size={50} className="mb-3" />
     <p>No content to display</p>
