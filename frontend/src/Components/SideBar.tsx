@@ -16,13 +16,15 @@ export function SideBar({
   darkMode,
   setDarkMode,
   setTypes,
-  MenuOpen
+  MenuOpen,
+  hideSignout=false,
 }: {
   darkMode: boolean;
   MenuOpen: boolean;
   setTypes: React.Dispatch<React.SetStateAction<string | null>>;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setDarkMode: (v: boolean) => void;
+  hideSignout?: boolean;
 }) {
   const [Select, setSelect] = useState("all");
   const navigate = useNavigate();
@@ -164,7 +166,7 @@ export function SideBar({
         </div>
 
         {/* Bottom Part: Permanent Sign Out Button */}
-        <div className="pt-2 border-t border-transparent mt-auto">
+        {!hideSignout&&(<div className="pt-2 border-t border-transparent mt-auto">
           <div
             className="cursor-pointer"
             onClick={() => {
@@ -183,7 +185,7 @@ export function SideBar({
               darkMode={darkMode}
             />
           </div>
-        </div>
+        </div>)}
       </div>
     </>
   );

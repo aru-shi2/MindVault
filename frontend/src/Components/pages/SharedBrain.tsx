@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
-import { Button } from '../Button'
-import { PlusIcon, ShareIcon, Inbox, Menu } from 'lucide-react'
+import { Inbox, Menu } from 'lucide-react'
 import { Card } from '../Card'
-import { CreateContentModal } from '../CreateContent'
 import { SideBar } from '../SideBar'
-import toast, {Toaster} from 'react-hot-toast'
+import {Toaster} from 'react-hot-toast'
+import { useParams } from 'react-router-dom'
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 interface  ArrType {
@@ -16,21 +15,18 @@ interface  ArrType {
   createdAt?: Date
 }
 
-export function Dashboard() {
-  const [modalOpen, setmodalOpen] = useState(false);
+export function SharedBrain() {
+        const {shareLink}=useParams()
+
   const [darkMode, setDarkMode] = useState(true);
-  const [Types, setTypes] = useState<string|null>("all")||null
   const [contArr, setcontArr] = useState<ArrType[]> ([])
-  const [Share, setShare] = useState(false)
   const [MenuOpen, setMenuOpen] = useState(false)
+  const [Types, setTypes] = useState<string|null>("all")||null
   
 
-    const t: string|null=localStorage.getItem("token");
-
-  async function fetchCont() {
-    const res=await fetch(`${BACKEND_URL}api/v1/content?type=${Types}`,{
+  async function fetchBrain() {
+    const res=await fetch(`${BACKEND_URL}api/v1/mind/${shareLink}`,{
       headers:{
-        'Authorization':`Bearer ${t}`,
         'Content-Type':'application/json'
       }
     })
@@ -40,49 +36,16 @@ export function Dashboard() {
   }
 
   useEffect(() => {
-    fetchCont();
-  }, [modalOpen || Types])
-
-
-  async function shareBrain() {
-    setShare((prev)=>!prev);
-    const res=await fetch(`${BACKEND_URL}api/v1/mind/`,{
-      method:'POST',
-      headers:{
-        'Authorization':`Bearer ${t}`,
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify({
-        share:Share
-      })
-    })
-    const data=await res.json();
-    console.log(data.hash)
-    
-    if(!Share){
-      toast("Stopped sharing",{
-        icon:"⚠"
-      })
+    if(shareLink){
+    fetchBrain();
     }
-    else{
-    try{
-    const shareUrl=`https://mind-vault-gules.vercel.app/mind/${data.hash}`
-
-    await navigator.clipboard.writeText(shareUrl);
-
-    toast.success("Link Copied!")
-    }catch(e){
-      toast.error("Error")
-    }
-  }
-  }
-  
+  }, [shareLink])
 
   return (
     <div className={`min-h-screen font-sans antialiased selection:bg-indigo-500/10 transition-colors duration-300 ${darkMode ? 'bg-[#050505] text-slate-200' : 'bg-[#f8fafc] text-slate-800'}`}>
 
       <Toaster/>
-      <SideBar MenuOpen={MenuOpen} setMenuOpen={setMenuOpen} setTypes={setTypes} darkMode={darkMode} setDarkMode={setDarkMode} />
+      <SideBar hideSignout={true} MenuOpen={MenuOpen} setMenuOpen={setMenuOpen} setTypes={setTypes} darkMode={darkMode} setDarkMode={setDarkMode} />
 
       {MenuOpen && (
   <div
@@ -122,32 +85,8 @@ export function Dashboard() {
       Your unified knowledge storage vector hub.
     </p>
   </div>
-</div>
-
-
-          <div className='flex items-center gap-3 self-end sm:self-auto'>
-            <Button 
-              onClick={shareBrain} 
-              variant="secondary" 
-              size='md' 
-              text='Share Content' 
-              startIcon={<ShareIcon size="1.5em"/>}
-              darkMode={darkMode}
-            />
-            
-            <Button 
-              onClick={() => setmodalOpen(true)} 
-              variant="primary" 
-              size='md' 
-              text='Add Content' 
-              startIcon={<PlusIcon size="1.5em"/>}
-              darkMode={darkMode}
-            />
-          </div>
+</div> 
         </header>
-
-        <CreateContentModal open={modalOpen} onClose={() => setmodalOpen(false)} darkMode={darkMode} />
-
 
 {contArr.length === 0 && (
   <div className={`flex flex-col items-center justify-center min-h-[50vh] ${darkMode? 'text-gray-600': 'text-black'}`}>
