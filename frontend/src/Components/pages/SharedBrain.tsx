@@ -98,10 +98,6 @@ export function SharedBrain() {
           {contArr?.map((cont)=>(
             <div key={cont._id}>
             <Card
-            onDelete={(id)=>
-              setcontArr((prev)=>
-                prev.filter((i)=>i._id!==id))}
-
              darkMode={darkMode} content={cont.contnt} contId={cont._id} id={cont.link} createdAt={cont.createdAt} title={cont.title} type={cont.type} link={
               cont.type==="youtube"?`https://www.youtube.com/embed/${cont.link}`:
               `https://x.com/i/status/${cont.link}:undefined`

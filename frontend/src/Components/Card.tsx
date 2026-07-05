@@ -20,7 +20,7 @@ interface CardProps {
   createdAt: Date|undefined;
   darkMode?: boolean;
   contId: string;
-  onDelete: (id: string) => void;
+  onDelete?: (id: string) => void;
 }
 
 export const Card = ({
@@ -69,7 +69,7 @@ export const Card = ({
       );
       const data = await res.json();
 
-      onDelete(contId);
+      onDelete?.(contId);
       toast.success(data.msg);
     } catch (e) {
       toast.error("Failed to delete");
