@@ -44,7 +44,6 @@ const postcontent=async(req: Request,res: Response)=>{
 const getcontent=async(req: Request,res: Response)=>{
     const type=req.query.type as string
     const userId=req.userId
-    console.log(userId)
     let content
     
     if(type==="all"){

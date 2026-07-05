@@ -35,7 +35,6 @@ export function Dashboard() {
       }
     })
     const data=await res.json()
-    console.log(data.content)
     setcontArr(data.content)
   }
 
@@ -54,11 +53,10 @@ export function Dashboard() {
         'Content-Type':'application/json'
       },
       body:JSON.stringify({
-        share:Share
+        share:newShare
       })
     })
     const data=await res.json();
-    console.log(data.hash)
     
     if(!newShare){
       toast("Stopped sharing",{

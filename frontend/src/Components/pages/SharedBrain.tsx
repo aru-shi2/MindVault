@@ -30,7 +30,6 @@ export function SharedBrain() {
       }
     })
     const data=await res.json()
-    console.log(data.content)
     setcontArr(data.content)
   }
 
