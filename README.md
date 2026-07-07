@@ -4,6 +4,50 @@ A modern **Second Brain** application to capture, organize, and share your digit
 
 ---
 
+## 📸 Screenshot
+
+<table align="center">
+<tr>
+  <th>Home Page</th>
+  <th>Content Page</th>
+</tr>
+<tr>
+  <td align="center">
+    <img src="frontend/public/Screenshot/Home.png" width="400" />
+  </td>
+  <td align="center">
+    <img src="frontend/public/Screenshot/content.png" width="400" />
+  </td>
+</tr>
+</table>
+
+<br/>
+
+<table align="center">
+<tr>
+  <th>Signup page</th>
+  <th>Signin page</th>
+</tr>
+<tr>
+  <td align="center">
+    <img src="frontend/public/Screenshot/Signup.png" width="400" />
+  </td>
+    <td>
+        <img src="frontend/public/Screenshot/Signin.png" width="400" />
+    </td>
+</tr>
+</table>
+
+---
+
+## 🌐 Live Demo
+
+The project is live and can be viewed here:
+
+[MINDVAULT](https://mind-vault-gules.vercel.app/)
+
+---
+
 ## ✨ Features
 
 - 📝 Create and organize personal notes
