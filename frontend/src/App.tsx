@@ -10,7 +10,7 @@ import { SharedBrain } from './Components/pages/SharedBrain'
 function App() {
   return (
     <BrowserRouter>
-    <Toaster position="top-right"/>
+    <Toaster/>
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/content' element={<Dashboard/>}/>

@@ -112,7 +112,7 @@ export const Card = ({
         </div>
 
         <h2
-          className={`text-md font-semibold leading-snug tracking-tight transition-colors ${darkMode ? "text-[#f3f4f6] group-hover:text-[#ffffff]" : "text-slate-800 group-hover:text-slate-950"}`}
+          className={`text-md break-words font-semibold leading-snug tracking-tight transition-colors ${darkMode ? "text-[#f3f4f6] group-hover:text-[#ffffff]" : "text-slate-800 group-hover:text-slate-950"}`}
         >
           {title}
         </h2>
